@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVT FORM</title>
+    <style>
+        body {
+            background-color: bisque;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #245953;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px auto;
+            max-inline-size: 500px;
+            color: #D8D8D8;
+        }
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #E49393;
+            text-decoration: none;
+            display: block;
+            margin-block-end: 20px;
+            text-align: center;
+        }
+        form {
+            background-color: #bfe9ff;
+            padding: 20px;
+            border-radius: 10px;
+            color: #245953;
+        }
+        input, select, textarea, button {
+            margin: 8px 0;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #245953;
+            inline-size: 100%;
+            box-sizing: border-box;
+        }
+        button.b {
+            background: linear-gradient(to right, #E49393 0%, #bfe9ff 100%);
+            color: #245953;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button.b:hover {
+            background: linear-gradient(to right, #bfe9ff 0%, #E49393 100%);
+        }
+        h5 {
+            text-align: center;
+            margin-block-end: 10px;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            let name = document.getElementById('name').value.trim();
+            let dressmodel = document.getElementById('dressmodel').value.trim();
+            let email = document.getElementById('email').value.trim();
+            let price = document.getElementById('price').value.trim();
+            let mobile = document.getElementById('mobile').value.trim();
+            let size = document.getElementById("size").value.trim();
+            let address = document.getElementById('address').value.trim();
+            let dresstype = document.getElementById('dresstype').value;
+
+            if (name === "") {
+                alert("Please enter your name.");
+                return false;
+            }
+            for (let i = 0; i < name.length; i++) {
+                let ch = name[i];
+                if (!((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z') || ch === ' ')) {
+                    alert("Name must contain only letters and spaces.");
+                    return false;
+                }
+            }
+            if (dressmodel === "") {
+                alert("Enter dress model.");
+                return false;
+            }
+            if (address === "") {
+                alert("Please enter the address.");
+                return false;
+            }
+            if (email === "") {
+                alert("Please enter your email address.");
+                return false;
+            }
+            let atPos = email.indexOf('@');
+            let dotPos = email.lastIndexOf('.');
+            if (atPos < 1 || dotPos < atPos + 2 || dotPos + 2 >= email.length) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+            if (price === "" || isNaN(price) || Number(price) < 0) {
+                alert("Please enter a valid price.");
+                return false;
+            }
+            if (size === "" || isNaN(size)) {
+                alert("Please enter a valid size.");
+                return false;
+            }
+            if (Number(size) % 2 === 1) {
+                alert("Please enter proper size (even number).");
+                return false;
+            }
+            if (mobile === "" || isNaN(mobile) || mobile.length !== 10) {
+                alert("Please enter a valid 10-digit mobile number.");
+                return false;
+            }
+            if (dresstype === "select") {
+                alert("Please select a dress type.");
+                return false;
+            }
+            alert("Form submitted successfully!");
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="navbar">
+        <a href="#" class="logo">Sri Veni Tailoring.com</a>
+        <form onsubmit="return validateForm()">
+            <h5>REGISTER FORM</h5>
+            <p>Welcome to this page 😊</p>
+            <p>Enter your details below:</p>
+            <label for="name">Name:</label>
+            <input type="text" id="name" placeholder="Enter name" />
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Enter email address" />
+            <label for="price">Price:</label>
+            <input type="number" id="price" placeholder="Enter price" />
+            <label for="size">Size:</label>
+            <input type="number" id="size" placeholder="Enter size" />
+            <label for="dressmodel">Dress Model:</label>
+            <input type="text" id="dressmodel" placeholder="Enter dress model" />
+            <label for="mobile">Mobile Number:</label>
+            <input type="number" id="mobile" placeholder="Enter Mobile Number" />
+            <label for="dresstype">Choose Dress Type:</label>
+            <select id="dresstype">
+                <option value="select">Select</option>
+                <option value="cotton">Cotton</option>
+                <option value="silk">Silk</option>
+                <option value="woolen">Woolen</option>
+            </select>
+            <label for="address">Address:</label>
+            <textarea id="address" placeholder="Enter address"></textarea>
+            <label for="city">City:</label>
+            <select id="city">
+                <option>Erode</option>
+                <option>Coimbatore</option>
+                <option>Tiruppur</option>
+                <option>Perundurai</option>
+            </select>
+            <label for="rating">Choose your rating:</label>
+            <select id="rating">
+                <option value="1">1⭐</option>
+                <option value="2">2⭐</option>
+                <option value="3">3⭐</option>
+                <option value="4">4⭐</option>
+                <option value="5">5⭐</option>
+            </select>
+            <p>Thank you 😊</p>
+            <button class="b" type="submit">SUBMIT</button>
+        </form>
+    </div>
